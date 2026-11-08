@@ -40,16 +40,11 @@ For one clearly scoped stage, use its focused skill directly.
 
 Skip any stage whose verified artifact already exists. Do not re-run work merely to follow the table.
 
-## Claim Mode
+## Fidelity Contract
 
-Declare one mode before describing fidelity. The Fidelity Battery owns measurements and thresholds.
+Declare one comparison mode and one motion basis before scoring. The [Fidelity Battery](../source-artwork-fidelity-battery/SKILL.md) is the sole owner of mode definitions, check scope, measurement formulas, and numeric tolerances.
 
-| Mode | Permitted claim |
-|---|---|
-| `source-frame-exact` | Original geometry or frames are compared at corresponding poses and timing. |
-| `source-observed` | Output is compared against behavior captured from the rendered source. |
-| `static-adaptation` | Still appearance is source-based; authored motion is an adaptation. |
-| `2d-derived-3d` | Visible 3D appearance is compared to 2D evidence; hidden volume is inferred. |
+Use its required-check matrix and packet to scope evidence. An unqualified 1:1 claim requires every required check to be measurable and pass.
 
 Never present authored motion, inferred geometry, or unobserved details as recovered source data.
 

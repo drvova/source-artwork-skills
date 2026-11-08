@@ -1,5 +1,5 @@
 {
-  "format_version": 1,
+  "format_version": 2,
   "mode": null,
   "motion_basis": null,
   "reference": {
@@ -7,12 +7,45 @@
     "sha256": "",
     "asset_type": "",
     "capture": {
-      "width_px": null,
-      "height_px": null,
+      "viewport_width_px": null,
+      "viewport_height_px": null,
+      "output_width_px": null,
+      "output_height_px": null,
+      "browser_zoom": "",
       "device_scale": null,
       "background": "",
+      "crop": "",
+      "color_profile": "",
       "state": "",
-      "time_ms": null
+      "interaction_state": "",
+      "pose": "",
+      "frame_index": null,
+      "time_ms": null,
+      "timing_uncertainty_ms": null,
+      "reduced_motion": null
+    }
+  },
+  "output": {
+    "uri_or_path": "",
+    "sha256": "",
+    "asset_type": "",
+    "capture": {
+      "viewport_width_px": null,
+      "viewport_height_px": null,
+      "output_width_px": null,
+      "output_height_px": null,
+      "browser_zoom": "",
+      "device_scale": null,
+      "background": "",
+      "crop": "",
+      "color_profile": "",
+      "state": "",
+      "interaction_state": "",
+      "pose": "",
+      "frame_index": null,
+      "time_ms": null,
+      "timing_uncertainty_ms": null,
+      "reduced_motion": null
     }
   },
   "claims": {
@@ -20,10 +53,40 @@
     "adapted_or_inferred": [],
     "not_testable": []
   },
+  "check_scope": {
+    "complete": false,
+    "required": [],
+    "supporting": [],
+    "out_of_scope": [],
+    "out_of_scope_reasons": {}
+  },
   "rendering": {
-    "tool_and_version": "",
-    "control_render_available": false,
-    "control_render_evidence": ""
+    "source_tool_and_version": "",
+    "output_tool_and_version": "",
+    "control_render": {
+      "available": false,
+      "uri_or_path": "",
+      "sha256": "",
+      "tool_and_version": "",
+      "capture": {
+        "viewport_width_px": null,
+        "viewport_height_px": null,
+        "output_width_px": null,
+        "output_height_px": null,
+        "browser_zoom": "",
+        "device_scale": null,
+        "background": "",
+        "crop": "",
+        "color_profile": "",
+        "state": "",
+        "interaction_state": "",
+        "pose": "",
+        "frame_index": null,
+        "time_ms": null,
+        "timing_uncertainty_ms": null,
+        "reduced_motion": null
+      }
+    }
   },
   "tolerances": {
     "silhouette_iou_min": 0.98,
@@ -37,42 +100,75 @@
   "measurements": {
     "silhouette_iou": {
       "value": null,
+      "units": "ratio (0-1)",
       "status": "not_testable",
+      "reason": "",
       "evidence": ""
     },
     "bbox_edge_drift_ratio": {
       "value": null,
+      "units": "ratio",
       "status": "not_testable",
+      "reason": "",
       "evidence": ""
     },
     "unexpected_palette_pixels": {
       "value": null,
+      "units": "pixels",
       "status": "not_testable",
+      "reason": "",
       "evidence": ""
     },
     "loop_period_error_ratio": {
       "value": null,
+      "reference_period_ms": null,
+      "output_period_ms": null,
+      "reference_period_uncertainty_ms": null,
+      "output_period_uncertainty_ms": null,
+      "capture_uncertainty_ratio": null,
+      "units": "ratio",
       "status": "not_testable",
+      "reason": "",
       "evidence": ""
     },
     "loop_seam_landmark_displacement_ratio": {
       "value": null,
+      "max_landmark_displacement_px": null,
+      "reference_subject_bbox_diagonal_px": null,
+      "units": "ratio",
       "status": "not_testable",
+      "reason": "",
       "evidence": ""
     },
     "unintended_attachment_gap_px": {
       "value": null,
+      "units": "reference-image pixels at recorded reference scale",
       "status": "not_testable",
+      "reason": "",
       "evidence": ""
     },
     "renderer_error": {
-      "per_metric": [],
-      "status": "not_testable",
-      "evidence": ""
+      "per_metric": [
+        {
+          "metric": "",
+          "error_formula": "",
+          "units": "",
+          "source_control_error": null,
+          "reconstruction_error": null,
+          "excess_error": null,
+          "tolerance": null,
+          "tolerance_rule": "excess_error <= tolerance",
+          "status": "not_testable",
+          "reason": "",
+          "evidence": ""
+        }
+      ]
     },
     "source_frame_count_and_timing_match": {
       "value": null,
+      "units": "boolean exact-match assertion",
       "status": "not_testable",
+      "reason": "",
       "evidence": ""
     }
   },
@@ -80,6 +176,8 @@
     "source_contact_sheet": "",
     "output_contact_sheet": "",
     "overlay": "",
+    "source_frame_table": "",
+    "output_frame_table": "",
     "difference_image": ""
   },
   "verdict": "not_testable",

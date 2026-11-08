@@ -15,7 +15,7 @@ Turn source frame data into a validated, documented sequence for downstream anim
 - Frame registration, order, dimensions, timing, or palette must be recovered.
 - A custom decoder or data layout needs validation before editing.
 
-Use [Source Artwork Inspection](../source-artwork-inspection/SKILL.md) to locate the source and observe playback. Use [2D Animation](../source-artwork-2d-animation/SKILL.md) to author or implement motion after decoding.
+Use [Source Artwork Inspection](../source-artwork-inspection/SKILL.md) to locate the source and observe playback. Use [2D Animation](../source-artwork-2d-animation/SKILL.md) or [3D Animation](../source-artwork-3d-animation/SKILL.md) to build from the decoded sequence. Hand off frame order, registration, palette, cadence, provenance, and validation evidence; frames establish visible shape/motion, not hidden depth.
 
 ## Workflow
 

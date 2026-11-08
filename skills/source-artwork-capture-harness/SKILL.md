@@ -19,12 +19,12 @@ Use the [Fidelity Battery](../source-artwork-fidelity-battery/SKILL.md) to score
 
 ## Workflow
 
-1. **Lock capture parameters.** Record viewport dimensions, device scale, background, crop, output size, color profile when available, and the source/output renderer versions.
-2. **Lock the visual state.** Record interaction state, pose, frame index or timestamp, animation time, and reduced-motion setting. Freeze playback at the same state for source and output; do not rely on approximate manual timing.
+1. **Lock capture parameters.** Record viewport dimensions, device scale, background, crop, output size, `color_profile`, and source/output renderer versions. Record each capture's `timing_uncertainty_ms` as an upper bound in milliseconds.
+2. **Lock the visual state.** Record interaction state, pose, frame index or timestamp, animation time, and `reduced_motion`. Match color profile and reduced-motion preference across source, output, and control; if either cannot be matched or measured, record the gap and mark affected checks `not_testable`. Freeze playback at the same state for source and output; do not rely on approximate manual timing.
 3. **Stabilize rendering.** Wait for fonts, images, and layout to settle. Keep browser zoom, color settings, and transparent-background handling consistent. Repeat a capture to detect nondeterministic output.
 4. **Render the control.** When renderers differ, pass unchanged source artwork through the output rendering path using the same capture parameters. Preserve this control separately; never retouch or normalize it after capture.
 5. **Generate comparison material.** Produce source/output/control captures, a contact sheet, and overlays or difference images as appropriate. Keep original captures unchanged and identify each file with its state and parameters.
-6. **Report capture limitations.** Record unsupported state controls, missing profile data, timing uncertainty, renderer differences, and any capture that could not be repeated. Let the battery mark affected metrics `not_testable` when the evidence is insufficient.
+6. **Report capture limitations.** Record unsupported state controls, missing profile data, timestamp uncertainty bounds, renderer differences, and any capture that could not be repeated. For period comparisons, derive and record reference/output period-uncertainty bounds from the timestamp bounds of the observations used; if either bound is unavailable, let the battery mark the period metric `not_testable`.
 
 ## Boundaries
 
@@ -41,8 +41,8 @@ Use the [Fidelity Battery](../source-artwork-fidelity-battery/SKILL.md) to score
 
 ## Acceptance
 
-- [ ] Source, output, and control share the same capture parameters.
-- [ ] Pose, state, and animation time are reproducible.
+- [ ] Source, output, and control share capture parameters, including `color_profile` and `reduced_motion`; any unavoidable mismatch is recorded and affected checks are `not_testable`.
+- [ ] Pose, state, animation time, and timestamp uncertainty are recorded for reproducible comparisons.
 - [ ] Repeated captures expose or rule out unstable rendering.
 - [ ] Originals remain unmodified and comparison artifacts are traceable.
 - [ ] Limitations are explicit; no metric or verdict is invented.

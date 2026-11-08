@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="312" height="266" viewBox="-8 -8 328 282" role="img" aria-labelledby="title desc">
-  <title id="title">Animated 2D axolotl</title>
-  <desc id="desc">The original pixel-cell artwork swims in place; its gills paddle, legs sweep, and eyes blink.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="312" height="266" viewBox="-14 -4 342 292" role="img" aria-labelledby="title desc">
+  <title id="title">Pixel-cell axolotl</title>
+  <desc id="desc">A warm-toned pixel-cell axolotl with upright orange gills, dark eyes, a pale face, and splayed limbs.</desc>
   <style>
     .swim-cycle { transform-box: view-box; transform-origin: 156px 133px; animation: body-sway 2s ease-in-out infinite; }
     .part { transform-box: view-box; animation-duration: 2s; animation-iteration-count: infinite; animation-timing-function: ease-in-out; }

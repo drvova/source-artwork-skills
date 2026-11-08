@@ -31,27 +31,29 @@ Each stage owns one concern. The router defines sequence and handoff artifacts; 
     <td>
       <picture>
         <source srcset="examples/axolotl-2d-source.svg" media="(prefers-reduced-motion: reduce)">
-        <img src="examples/axolotl-2d-animation.svg" alt="The pixel-art axolotl swims in place in 2D, with its gills paddling, legs sweeping, and eyes blinking.">
+        <img src="examples/axolotl-2d-animation.svg" alt="A warm-toned pixel-cell axolotl with upright orange gills, dark eyes, a pale face, and splayed limbs.">
       </picture>
     </td>
     <td>
       <picture>
         <source srcset="examples/axolotl-3d-demo-still.png" media="(prefers-reduced-motion: reduce)">
-        <img src="examples/axolotl-3d-demo.gif" alt="A 3D pixel-art axolotl swimming in place, with gills and limbs moving.">
+        <img src="examples/axolotl-3d-demo.gif" alt="A low-resolution 3D axolotl with a cream body, orange gills, pale eyes, and splayed limbs against a black background.">
       </picture>
     </td>
   </tr>
 </table>
 
-Both versions start from the same exact source cells. The left is an authored 2D animation; the right extrudes those cells into a source-derived 3D animation. Static source art is used when reduced motion is preferred.
+The left SVG is an authored 2D rig; the right GIF is a 3D reconstruction from the same visible source cells. The static `<source>` branches supply stills when reduced motion is preferred.
 
-1. **Inspect the input.** The [inspection skill](skills/source-artwork-inspection/SKILL.md) records the source asset, rendered states, and confirmed facts separately from inference. The mark was a 312 × 266 SVG with seven colored paths made from 253 rectangular pixel-art cells. The website's animation was separate from the static logo.
-2. **Trace the original motion.** The [sprite-frame skill](skills/source-artwork-sprite-frames/SKILL.md) covers decoder-first analysis and frame validation. The inspected site bundle contained 24 frames on a 39 × 28 cell grid, packed as base64 and decoded to SVG at 12 fps. Hover and keyboard focus drove playback. The bundle exposed the playback format, but not the artist's drawing tool.
-3. **Animate in 2D.** Keep the source cells and colors intact; rig the gills and limbs at their attachment pivots, then add body sway and a blink. This demo authors a new 2D swim cycle from the source geometry rather than claiming to replay the site's exact 24 frames.
-4. **Build the 3D version.** Extrude the same colored cells into shallow layers and group body, gills, eyes, and limbs. Keep pivots at real attachment points; add body sway, breathing, limb strokes, gill motion, and a blink without losing the source silhouette.
-5. **Render and check.** The [capture harness](skills/source-artwork-capture-harness/SKILL.md) handles matched comparison inputs; the [fidelity battery](skills/source-artwork-fidelity-battery/SKILL.md) owns the thresholds and verdict. Inspect key poses for silhouette drift, detached joints, clipping, and loop seams. Both animations include static reduced-motion fallbacks.
+1. **Trace the source page.** The earlier [Foresight Labs](https://foresight-labs.eu/) site build used for this case study had a separate 2D animation. The live homepage has since changed; this is a historical source reference, not a claim about its current content. The source author and upstream license were not recorded.
+2. **Inspect the static mark.** The input was a 312 × 266 SVG with seven colored paths containing 253 rectangular pixel-art cells. Preserve the original path geometry, palette, and cell registration; distinguish this static mark from the site's animation player.
+3. **Recover the motion data.** The inspected site bundle contained 24 base64-packed frames on a 39 × 28 cell grid. Its runtime decoded the frames to SVG and played them at 12 fps; hover and keyboard focus drove playback. Trace the actual data consumer, decode the frames, and validate order, registration, and timing rather than guessing the format.
+4. **Separate recovered motion from adaptation.** The original frame payload is not included here. The 2D example is a new source-cell rig, not a frame-for-frame export of the site's 24 frames.
+5. **Author the 2D cycle.** Keep the cells and colors intact; group the gills and limbs around attachment pivots, then add a restrained body sway and blink. Give the animated SVG and still fallback one shared padded viewBox so the motion stays in frame and reduced-motion selection does not resize the art; inspect extreme poses for silhouette drift.
+6. **Derive the 3D form.** Extrude the visible cells into shallow layers and group the body, gills, eyes, and limbs around observed attachment points. The source is flat, so thickness, back surfaces, and hidden anatomy are inferences; any lighting-derived color changes are authored, not recovered source data.
+7. **Render and verify.** Capture matched source/output views, inspect registration, color boundaries, joints, loop seams, and motion preferences, then record the claim with the [Capture Harness](skills/source-artwork-capture-harness/SKILL.md) and [Fidelity Battery](skills/source-artwork-fidelity-battery/SKILL.md). The editable 2D SVGs are included; the 3D model source and GIF/PNG generation command are not, so the 3D media are presentation fixtures rather than clean-regeneration targets.
 
-**Fidelity boundary:** the website's own animation was 2D, and its frame data was inspected. The 2D animation shown here is a new source-cell rig, not a frame-for-frame export of that player. The 3D GIF is a reconstruction from the same visible 2D artwork—not an original 3D model recovered from the site—so depth and hidden surfaces are inferred. The MIT license covers the skills and documentation; the axolotl artwork remains with its respective rights holder.
+**Fidelity and rights boundary:** the historical website animation was 2D, and its frame format and playback behavior were inspected. The 2D animation here is a new source-cell rig; the 3D GIF is inferred from visible 2D artwork, not an original 3D model recovered from the site. The axolotl source and its derivatives are excluded from this repository's MIT grant. Their original author and upstream license were not recorded.
 
 
 ## More animated 2D pixel-cell examples
@@ -65,19 +67,19 @@ Both versions start from the same exact source cells. The left is an authored 2D
     <td>
       <picture>
         <source srcset="examples/butterfly-animation-still.png" media="(prefers-reduced-motion: reduce)">
-        <img src="examples/butterfly-animation.gif" width="320" height="256" alt="A pixel-cell butterfly flaps its wings and hovers over a meadow.">
+        <img src="examples/butterfly-animation.gif" width="320" height="256" alt="An orange pixel-cell butterfly above a green meadow, beneath pale clouds and a yellow sun.">
       </picture>
     </td>
     <td>
       <picture>
         <source srcset="examples/jellyfish-animation-still.png" media="(prefers-reduced-motion: reduce)">
-        <img src="examples/jellyfish-animation.gif" width="320" height="256" alt="A pixel-cell jellyfish pulses its bell and sways four tentacles underwater.">
+        <img src="examples/jellyfish-animation.gif" width="320" height="256" alt="A lavender pixel-cell jellyfish with a rounded bell and four pale tentacles against a dark blue underwater scene.">
       </picture>
     </td>
   </tr>
 </table>
 
-Both are original, MIT-licensed demonstrations built from explicit 8 × 8 SVG cells—not animations recovered from a website. The butterfly rigs its two wings around their attachment pivots; the jellyfish coordinates a bell pulse with four separate tentacle sweeps. The editable [butterfly SVG](examples/butterfly-animation.svg) and [jellyfish SVG](examples/jellyfish-animation.svg) are the animation sources; their GIFs are rendered previews that play reliably in GitHub Markdown, and the static PNGs are reduced-motion fallbacks.
+Both are original, MIT-licensed demonstrations built from explicit 8 × 8 SVG cells—not animations recovered from a website. The butterfly rigs its two wings around their attachment pivots; the jellyfish coordinates a bell pulse with four separate tentacle sweeps. The editable [butterfly SVG](examples/butterfly-animation.svg) and [jellyfish SVG](examples/jellyfish-animation.svg) are their animation sources; the GIFs and PNGs are rendered previews.
 
 ## What “1:1” means here
 
@@ -85,7 +87,7 @@ When the original 2D paths, frames, or model are available, the skills direct th
 
 ## Quantified Fidelity Check
 
-Use the [Fidelity Battery](skills/source-artwork-fidelity-battery/SKILL.md) after any reconstruction when you need a reviewable pass/fail result. It separates source-frame-exact, source-observed, static-adaptation, and 2D-derived-3D claims so invented motion or hidden geometry is never scored as recovered. Default checks include silhouette IoU `>= 0.98`, bounding-box drift `<= 1%`, and loop-seam displacement `<= 1%` of the subject bounds. Cross-renderer comparisons use an unchanged-source control render, which the [Capture Harness](skills/source-artwork-capture-harness/SKILL.md) helps produce. Copy `fidelity-battery-template.json` from the skill folder, attach contact sheets/comparisons, and mark unsupported checks `not_testable` rather than guessing.
+Use the [Fidelity Battery](skills/source-artwork-fidelity-battery/SKILL.md) after reconstruction when you need a reviewable pass/fail result. It defines comparison modes, check scope, measurement formulas, and the only numeric tolerance defaults; the [JSON template](skills/source-artwork-fidelity-battery/fidelity-battery-template.json) is the proof packet. Mark unsupported checks `not_testable` with the evidence gap; a required untestable check cannot support an unqualified 1:1 verdict.
 
 ## Install
 
@@ -100,4 +102,4 @@ For project-only use, copy the skill folders into the project-level skills direc
 
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT applies to the skills, documentation, and original butterfly/jellyfish examples. It does not apply to the `examples/axolotl-*` source artwork or derivatives. The historical source reference is [Foresight Labs](https://foresight-labs.eu/); the upstream author and license were not recorded. See [LICENSE](LICENSE) for the scope note and terms.
