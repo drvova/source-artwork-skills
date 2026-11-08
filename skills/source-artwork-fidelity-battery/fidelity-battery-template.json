@@ -1,12 +1,18 @@
 {
-  "format_version": 2,
+  "format_version": 3,
   "mode": null,
   "motion_basis": null,
+  "pre_registration": {
+    "frozen_at_utc": "",
+    "artifact_uri_or_commit": "",
+    "sha256": ""
+  },
   "reference": {
     "uri_or_path": "",
     "sha256": "",
     "asset_type": "",
     "capture": {
+      "view_id": "primary",
       "viewport_width_px": null,
       "viewport_height_px": null,
       "output_width_px": null,
@@ -30,6 +36,7 @@
     "sha256": "",
     "asset_type": "",
     "capture": {
+      "view_id": "primary",
       "viewport_width_px": null,
       "viewport_height_px": null,
       "output_width_px": null,
@@ -48,10 +55,22 @@
       "reduced_motion": null
     }
   },
+  "views": [
+    {
+      "view_id": "primary",
+      "projection": "2d",
+      "camera_pose": "n/a",
+      "object_pose": "n/a",
+      "reference_capture_record": "reference.capture",
+      "output_capture_record": "output.capture",
+      "evidence": ""
+    }
+  ],
   "claims": {
     "recovered": [],
     "adapted_or_inferred": [],
-    "not_testable": []
+    "not_testable": [],
+    "whole_object_3d_equivalence_claimed": false
   },
   "check_scope": {
     "complete": false,
@@ -69,6 +88,7 @@
       "sha256": "",
       "tool_and_version": "",
       "capture": {
+        "view_id": "primary",
         "viewport_width_px": null,
         "viewport_height_px": null,
         "output_width_px": null,
@@ -95,7 +115,7 @@
     "observed_loop_period_error_ratio_max": 0.05,
     "loop_seam_landmark_displacement_ratio_max": 0.01,
     "unintended_attachment_gap_px_max": 1,
-    "overrides_and_reasons": []
+    "overrides_and_reasons": {}
   },
   "measurements": {
     "silhouette_iou": {
@@ -125,7 +145,24 @@
       "output_period_ms": null,
       "reference_period_uncertainty_ms": null,
       "output_period_uncertainty_ms": null,
-      "capture_uncertainty_ratio": null,
+      "period_error_ratio_lower_bound": null,
+      "period_error_ratio_upper_bound": null,
+      "period_observations": {
+        "reference": {
+          "boundary_definition": "",
+          "events": [
+            {"time_ms": null, "timing_uncertainty_ms": null},
+            {"time_ms": null, "timing_uncertainty_ms": null}
+          ]
+        },
+        "output": {
+          "boundary_definition": "",
+          "events": [
+            {"time_ms": null, "timing_uncertainty_ms": null},
+            {"time_ms": null, "timing_uncertainty_ms": null}
+          ]
+        }
+      },
       "units": "ratio",
       "status": "not_testable",
       "reason": "",
@@ -142,12 +179,14 @@
     },
     "unintended_attachment_gap_px": {
       "value": null,
-      "units": "reference-image pixels at recorded reference scale",
+      "units": "pixels in the aligned reference capture at its recorded output dimensions and device scale",
       "status": "not_testable",
       "reason": "",
       "evidence": ""
     },
     "renderer_error": {
+      "status": "not_testable",
+      "reason": "",
       "per_metric": [
         {
           "metric": "",
@@ -158,6 +197,7 @@
           "excess_error": null,
           "tolerance": null,
           "tolerance_rule": "excess_error <= tolerance",
+          "tolerance_rationale": "",
           "status": "not_testable",
           "reason": "",
           "evidence": ""
@@ -170,7 +210,8 @@
       "status": "not_testable",
       "reason": "",
       "evidence": ""
-    }
+    },
+    "geometry_checks": []
   },
   "evidence": {
     "source_contact_sheet": "",

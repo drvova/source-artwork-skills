@@ -35,7 +35,7 @@ Use [Source Artwork Inspection](../source-artwork-inspection/SKILL.md) and [SVG 
 - Source-derived geometry or a documented, reproducible model extraction path.
 - A 3D rig/composition with deterministic timing and connected joints.
 - An explicit list of inferred depth, hidden surfaces, authored motion, and lighting/shading color changes.
-- Rendered animation, still fallback where needed, and regeneration inputs/instructions. If source or generator inputs cannot be included, document what is missing and do not claim reproducibility.
+- Rendered animation, still fallback where needed, and generation inputs/instructions. If source or generator inputs are missing, identify the output as a presentation fixture, list the missing inputs, and mark the package incomplete and non-reproducible.
 
 Use the [Capture Harness](../source-artwork-capture-harness/SKILL.md) for matched renders/control images and the [Fidelity Battery](../source-artwork-fidelity-battery/SKILL.md) for measured claims.
 
@@ -46,4 +46,4 @@ Use the [Capture Harness](../source-artwork-capture-harness/SKILL.md) for matche
 - [ ] Inferred geometry is labeled; recovered model data is not fabricated.
 - [ ] Moving parts remain attached through the full cycle; the loop closes cleanly.
 - [ ] The delivery format and fallback suit the target surface.
-- [ ] When regeneration inputs are included, a clean regeneration reproduces the checked-in output; otherwise the missing inputs are documented and reproducibility is not claimed.
+- [ ] A complete delivery includes all source/generator inputs and exact commands, and a clean regeneration reproduces the checked-in output; a presentation fixture is explicitly marked incomplete and non-reproducible and does not pass this acceptance item.
