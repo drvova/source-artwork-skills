@@ -43,6 +43,31 @@ Both versions start from the same exact source cells. The left is an authored 2D
 **Fidelity boundary:** the website's own animation was 2D, and its frame data was inspected. The 2D animation shown here is a new source-cell rig, not a frame-for-frame export of that player. The 3D GIF is a reconstruction from the same visible 2D artwork—not an original 3D model recovered from the site—so depth and hidden surfaces are inferred. The MIT license covers the skills and documentation; the axolotl artwork remains with its respective rights holder.
 
 
+## More animated 2D pixel-cell examples
+
+<table>
+  <tr>
+    <th>Butterfly — hinged wing cells</th>
+    <th>Jellyfish — pulsing bell and tentacle cells</th>
+  </tr>
+  <tr>
+    <td>
+      <picture>
+        <source srcset="examples/butterfly-animation-still.png" media="(prefers-reduced-motion: reduce)">
+        <img src="examples/butterfly-animation.gif" width="320" height="256" alt="A pixel-cell butterfly flaps its wings and hovers over a meadow.">
+      </picture>
+    </td>
+    <td>
+      <picture>
+        <source srcset="examples/jellyfish-animation-still.png" media="(prefers-reduced-motion: reduce)">
+        <img src="examples/jellyfish-animation.gif" width="320" height="256" alt="A pixel-cell jellyfish pulses its bell and sways four tentacles underwater.">
+      </picture>
+    </td>
+  </tr>
+</table>
+
+Both are original, MIT-licensed demonstrations built from explicit 8 × 8 SVG cells—not animations recovered from a website. The butterfly rigs its two wings around their attachment pivots; the jellyfish coordinates a bell pulse with four separate tentacle sweeps. The editable [butterfly SVG](examples/butterfly-animation.svg) and [jellyfish SVG](examples/jellyfish-animation.svg) are the animation sources; their GIFs are rendered previews that play reliably in GitHub Markdown, and the static PNGs are reduced-motion fallbacks.
+
 ## What “1:1” means here
 
 When the original 2D paths, frames, or model are available, the skills direct the agent to preserve them and verify against matched captures. If only a flat 2D reference exists, hidden 3D depth and surfaces cannot be recovered exactly; the unified skill requires those parts to be identified as inferred rather than presented as the original model.
