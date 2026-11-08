@@ -8,15 +8,20 @@ Portable, provider-agnostic agent skills for inspecting real artwork and recreat
 - [Source Artwork 2D Animation](skills/source-artwork-2d-animation/SKILL.md) — focused pixel-art, SVG, sprite-frame, and playback workflow.
 - [Source Artwork 3D Animation](skills/source-artwork-3d-animation/SKILL.md) — focused source-derived 3D geometry, rigging, and looping animation workflow.
 
-## Worked example: the axolotl, from source art to 3D motion
+## Worked example: 2D and 3D axolotl animations
 
 <table>
   <tr>
-    <th>2D source mark (SVG)</th>
+    <th>2D animation (source-cell rig)</th>
     <th>3D reconstruction (animated)</th>
   </tr>
   <tr>
-    <td><img src="examples/axolotl-2d-source.svg" alt="The original flat pixel-art axolotl logo in orange, cream, and white."></td>
+    <td>
+      <picture>
+        <source srcset="examples/axolotl-2d-source.svg" media="(prefers-reduced-motion: reduce)">
+        <img src="examples/axolotl-2d-animation.svg" alt="The pixel-art axolotl swims in place in 2D, with its gills paddling, legs sweeping, and eyes blinking.">
+      </picture>
+    </td>
     <td>
       <picture>
         <source srcset="examples/axolotl-3d-demo-still.png" media="(prefers-reduced-motion: reduce)">
@@ -26,15 +31,15 @@ Portable, provider-agnostic agent skills for inspecting real artwork and recreat
   </tr>
 </table>
 
-The left is the source's flat 2D artwork; the right is the animated 3D reconstruction built from it. The website's own 2D animation was a separate frame sequence, described below.
+Both versions start from the same exact source cells. The left is an authored 2D animation; the right extrudes those cells into a source-derived 3D animation. Static source art is used when reduced motion is preferred.
 
 1. **Inspect the input.** The mark was a 312 × 266 SVG with seven colored paths made from 253 rectangular pixel-art cells. The website's animation was separate from the static logo.
 2. **Trace the original motion.** The inspected site bundle contained 24 frames on a 39 × 28 cell grid, packed as base64 and decoded to SVG at 12 fps. Hover and keyboard focus drove playback. The bundle exposed the playback format, but not the artist's drawing tool.
-3. **Preserve the artwork.** The source cells, colors, coordinates, and silhouette were retained instead of redrawing from a screenshot.
-4. **Build connected 3D motion.** The 2D cells became shallow colored layers, then were grouped into body, gills, eyes, and limb sections. Pivots follow real attachment points; body sway, breathing, limb strokes, gill motion, and a blink add life without losing the source silhouette.
-5. **Render and check.** The result was rendered as a deterministic loop and inspected at key poses for silhouette drift, detached joints, clipping, and the loop seam. The still above is used when reduced motion is preferred.
+3. **Animate in 2D.** Keep the source cells and colors intact; rig the gills and limbs at their attachment pivots, then add body sway and a blink. This demo authors a new 2D swim cycle from the source geometry rather than claiming to replay the site's exact 24 frames.
+4. **Build the 3D version.** Extrude the same colored cells into shallow layers and group body, gills, eyes, and limbs. Keep pivots at real attachment points; add body sway, breathing, limb strokes, gill motion, and a blink without losing the source silhouette.
+5. **Render and check.** Inspect key poses for silhouette drift, detached joints, clipping, and loop seams. Both animations include static reduced-motion fallbacks.
 
-**Fidelity boundary:** the inspected website animation was 2D. This GIF is a 3D reconstruction derived from its visible source artwork—not an original 3D model recovered from the site. Depth and hidden surfaces are inferred. The MIT license covers the skills and documentation; the axolotl artwork remains with its respective rights holder.
+**Fidelity boundary:** the website's own animation was 2D, and its frame data was inspected. The 2D animation shown here is a new source-cell rig, not a frame-for-frame export of that player. The 3D GIF is a reconstruction from the same visible 2D artwork—not an original 3D model recovered from the site—so depth and hidden surfaces are inferred. The MIT license covers the skills and documentation; the axolotl artwork remains with its respective rights holder.
 
 
 ## What “1:1” means here
