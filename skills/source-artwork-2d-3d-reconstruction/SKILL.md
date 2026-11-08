@@ -9,6 +9,10 @@ description: Reverse-engineer existing artwork and animation, reproduce its 2D a
 
 Reconstruct a real logo, mascot, sprite, or character from inspected source evidence. Support a 2D reproduction, a 3D reconstruction, or both. Treat source geometry and observed behavior as the authority; do not replace them with a merely similar design.
 
+## Portability Contract
+
+This workflow is independent of model provider, agent host, operating system, authoring application, renderer, and framework. Use equivalent tools exposed by the project or host; no particular language, browser, framework, editor, or 3D engine is required. Keep tool-specific commands in project scripts. If a capability is unavailable, use supplied assets or record the evidence limit rather than inventing results.
+
 ## Activate When
 
 - A user wants an existing website or product mascot recreated closely.
@@ -23,6 +27,7 @@ Choose the requested output tracks: `2D`, `3D`, or `both`.
 - **2D source available:** Preserve and reuse the actual vector paths, pixel cells, sprite frames, or decoded source data. Match its viewBox/canvas, dimensions, palette, frame timing, registration, interaction, crop, and responsive behavior. Do not substitute a redrawn approximation when the source is accessible.
 - **Original 3D source available:** Recover and reuse the actual model, mesh, materials, camera, rig, animation curves, and scene settings where possible. Compare the rendered result under matching conditions.
 - **Only 2D source available for a 3D request:** Match the observable 2D silhouette, palette, and motion. Depth, hidden surfaces, thickness, and unseen anatomy cannot be recovered exactly from a flat image; infer only what is needed, label those choices, and do not claim the hidden 3D is 1:1.
+- **Only a 2D still exists:** Preserve the exact still and identify any authored 2D motion as an adaptation with inferred poses and timing; do not present it as recovered source animation.
 - **Exact pixels requested:** Use same-size captures and pixel/alpha comparison. Separate genuine geometry differences from browser, color-management, and renderer differences. State any unavoidable mismatch rather than calling a visual approximation pixel-identical.
 
 ## Required Workflow
@@ -39,7 +44,7 @@ Choose the requested output tracks: `2D`, `3D`, or `both`.
 
 ## Tool Selection
 
-Use tools and libraries already supported by the project; inspect their actual APIs and versions before implementation. Browser inspection, SVG/model parsers, pixel editors, 2D renderers, 3D frameworks, encoders, and comparison tools are interchangeable implementation choices, not dependencies of this skill. Keep tool-specific commands in project scripts and keep this workflow provider-agnostic.
+Use tools and libraries already supported by the project; inspect their actual APIs and versions before implementation. Browser inspection, SVG/model parsers, pixel editors, 2D renderers, 3D frameworks, encoders, and comparison tools are interchangeable choices, not required dependencies. Do not assume network, browser, shell, or filesystem access; use available evidence and state any resulting limitation. Keep this workflow independent of provider and host.
 
 ## Deliverables
 

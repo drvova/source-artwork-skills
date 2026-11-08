@@ -9,6 +9,10 @@ description: Reverse-engineer real vector or 2D character artwork and turn it in
 
 Reconstruct an existing mascot, logo, or illustrated character from its real source asset, then build and verify a faithful 3D animation. Preserve the source identity; do not substitute an approximate redraw when the original geometry is available.
 
+## Portability Contract
+
+This workflow is independent of model provider, agent host, operating system, authoring application, renderer, and framework. Use equivalent tools exposed by the project or host; no particular language, browser, framework, editor, or 3D engine is required. Keep tool-specific commands in project scripts. If a capability is unavailable, use supplied assets or record the evidence limit rather than inventing results.
+
 ## Activate When
 
 - A real website, app, or repository contains artwork that must be inspected and animated.
@@ -24,13 +28,13 @@ Reconstruct an existing mascot, logo, or illustrated character from its real sou
 4. **Choose a representation that fits the source.** Use layered extrusion for flat, color-separated art; use a mesh or deforming rig when the source needs curved volume or continuous deformation. Preserve the original silhouette, scale, and orientation. Avoid unnecessary remeshing or hand-redrawing.
 5. **Build connected parts deliberately.** Partition only where the character can plausibly bend. Place pivots at observed attachment points. Keep shoulder, hip, or root geometry attached; overlap or deform joint geometry when independent rigid pieces would expose gaps. Do not classify anatomy using broad coordinate cuts without checking the resulting silhouette.
 6. **Design a deterministic motion cycle.** Make the main action readable, then add restrained secondary motion such as body sway, breathing, gill or ear movement, and blinking. Use stable frame-based timing or the host framework's equivalent. Offset phases between paired parts; make the final frame return cleanly to the first.
-7. **Compose for the delivery surface.** Use the existing project stack and its supported APIs. Match camera, lighting, background, scale, and crop to the source context. For GitHub Markdown, use a supported animated image and a static image for reduced-motion preference; do not rely on embedded interactive canvas or video behavior.
+7. **Compose for the delivery surface.** Use the existing project stack and supported APIs. Match camera, lighting, background, scale, and crop to the source context. Select an animation format the destination supports; if it cannot play interactive output, render a supported media file and provide a still fallback for reduced-motion or static contexts.
 8. **Render, inspect, and refine.** Inspect the source beside representative output frames at final display size. Check the loop seam, joint roots, full stroke extremes, face, silhouette, occlusion, z-fighting, clipping, and color order. Repair the underlying partition or pivot before merely shrinking the animation until the defect is hidden.
 9. **Make regeneration reproducible.** Check in source data, model/composition code, and the exact generation commands. Regenerate all affected GIFs, videos, stills, and previews after geometry or motion changes. Verify the rendered README or target page, including reduced-motion output and alt text.
 
 ## Tool Selection
 
-Use the tools already supported by the project. Inspect their current documentation before relying on a renderer, geometry API, browser probe, or encoder. A browser inspector, SVG parser, mesh/3D framework, offline renderer, and media encoder are implementation choices—not required dependencies of this skill. Keep tool-specific commands in project scripts, not in this workflow.
+Use the tools already supported by the project. Inspect current documentation before relying on a renderer, geometry API, browser probe, or encoder. Browser inspectors, SVG parsers, mesh/3D frameworks, offline renderers, and media encoders are implementation choices—not required dependencies. Do not assume network, browser, shell, or filesystem access; use available evidence and state any resulting limitation. Keep tool-specific commands in project scripts.
 
 ## Deliverables
 
