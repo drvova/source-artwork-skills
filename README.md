@@ -2,12 +2,23 @@
 
 Portable, provider-agnostic agent skills for inspecting real artwork and recreating its 2D animation and 3D form faithfully.
 
-## Skills
+## Skill map
 
-- **[Source Artwork 2D/3D Reconstruction](skills/source-artwork-2d-3d-reconstruction/SKILL.md)** — unified workflow; use this for end-to-end, source-faithful 2D and 3D work.
-- [Source Artwork 2D Animation](skills/source-artwork-2d-animation/SKILL.md) — focused pixel-art, SVG, sprite-frame, and playback workflow.
-- [Source Artwork 3D Animation](skills/source-artwork-3d-animation/SKILL.md) — focused source-derived 3D geometry, rigging, and looping animation workflow.
-- [Source Artwork Fidelity Battery](skills/source-artwork-fidelity-battery/SKILL.md) — standalone quantitative audit with explicit comparison modes, tolerances, and a reusable proof packet.
+### Router
+
+- **[Source Artwork Reconstruction Router](skills/source-artwork-2d-3d-reconstruction/SKILL.md)** — selects the tracks and sequences focused skills for end-to-end work.
+
+### Focused skills
+
+- [Source Artwork Inspection](skills/source-artwork-inspection/SKILL.md) — locate assets, observe behavior, and separate evidence from inference.
+- [SVG and Pixel-Cell Geometry](skills/source-artwork-svg-cells/SKILL.md) — preserve vector paths, grid-aligned cells, palette, and registration.
+- [Sprite Frame Data](skills/source-artwork-sprite-frames/SKILL.md) — decode, validate, and round-trip frame sheets and packed formats.
+- [2D Animation](skills/source-artwork-2d-animation/SKILL.md) — rig prepared geometry or frames, author motion, and implement playback.
+- [3D Animation](skills/source-artwork-3d-animation/SKILL.md) — build source-derived geometry, joints, deterministic motion, and renders.
+- [Capture Harness](skills/source-artwork-capture-harness/SKILL.md) — reproduce matched captures and unchanged-source control renders.
+- [Fidelity Battery](skills/source-artwork-fidelity-battery/SKILL.md) — independently score a result and record a scoped proof packet.
+
+Each stage owns one concern. The router defines sequence and handoff artifacts; focused skills own implementation procedure. Use existing verified artifacts instead of repeating earlier stages.
 
 ## Worked example: 2D and 3D axolotl animations
 
@@ -34,11 +45,11 @@ Portable, provider-agnostic agent skills for inspecting real artwork and recreat
 
 Both versions start from the same exact source cells. The left is an authored 2D animation; the right extrudes those cells into a source-derived 3D animation. Static source art is used when reduced motion is preferred.
 
-1. **Inspect the input.** The mark was a 312 × 266 SVG with seven colored paths made from 253 rectangular pixel-art cells. The website's animation was separate from the static logo.
-2. **Trace the original motion.** The inspected site bundle contained 24 frames on a 39 × 28 cell grid, packed as base64 and decoded to SVG at 12 fps. Hover and keyboard focus drove playback. The bundle exposed the playback format, but not the artist's drawing tool.
+1. **Inspect the input.** The [inspection skill](skills/source-artwork-inspection/SKILL.md) records the source asset, rendered states, and confirmed facts separately from inference. The mark was a 312 × 266 SVG with seven colored paths made from 253 rectangular pixel-art cells. The website's animation was separate from the static logo.
+2. **Trace the original motion.** The [sprite-frame skill](skills/source-artwork-sprite-frames/SKILL.md) covers decoder-first analysis and frame validation. The inspected site bundle contained 24 frames on a 39 × 28 cell grid, packed as base64 and decoded to SVG at 12 fps. Hover and keyboard focus drove playback. The bundle exposed the playback format, but not the artist's drawing tool.
 3. **Animate in 2D.** Keep the source cells and colors intact; rig the gills and limbs at their attachment pivots, then add body sway and a blink. This demo authors a new 2D swim cycle from the source geometry rather than claiming to replay the site's exact 24 frames.
 4. **Build the 3D version.** Extrude the same colored cells into shallow layers and group body, gills, eyes, and limbs. Keep pivots at real attachment points; add body sway, breathing, limb strokes, gill motion, and a blink without losing the source silhouette.
-5. **Render and check.** Inspect key poses for silhouette drift, detached joints, clipping, and loop seams. Both animations include static reduced-motion fallbacks.
+5. **Render and check.** The [capture harness](skills/source-artwork-capture-harness/SKILL.md) handles matched comparison inputs; the [fidelity battery](skills/source-artwork-fidelity-battery/SKILL.md) owns the thresholds and verdict. Inspect key poses for silhouette drift, detached joints, clipping, and loop seams. Both animations include static reduced-motion fallbacks.
 
 **Fidelity boundary:** the website's own animation was 2D, and its frame data was inspected. The 2D animation shown here is a new source-cell rig, not a frame-for-frame export of that player. The 3D GIF is a reconstruction from the same visible 2D artwork—not an original 3D model recovered from the site—so depth and hidden surfaces are inferred. The MIT license covers the skills and documentation; the axolotl artwork remains with its respective rights holder.
 
@@ -74,19 +85,18 @@ When the original 2D paths, frames, or model are available, the skills direct th
 
 ## Quantified Fidelity Check
 
-Use the [Fidelity Battery](skills/source-artwork-fidelity-battery/SKILL.md) after any reconstruction when you need a reviewable pass/fail result. It separates source-frame-exact, source-observed, static-adaptation, and 2D-derived-3D claims so invented motion or hidden geometry is never scored as recovered. Default checks include silhouette IoU `>= 0.98`, bounding-box drift `<= 1%`, and loop-seam displacement `<= 1%` of the subject bounds. Cross-renderer comparisons use an unchanged-source control render to account for renderer error. Copy `fidelity-battery-template.json` from the skill folder, attach contact sheets/comparisons, and mark unsupported checks `not_testable` rather than guessing.
+Use the [Fidelity Battery](skills/source-artwork-fidelity-battery/SKILL.md) after any reconstruction when you need a reviewable pass/fail result. It separates source-frame-exact, source-observed, static-adaptation, and 2D-derived-3D claims so invented motion or hidden geometry is never scored as recovered. Default checks include silhouette IoU `>= 0.98`, bounding-box drift `<= 1%`, and loop-seam displacement `<= 1%` of the subject bounds. Cross-renderer comparisons use an unchanged-source control render, which the [Capture Harness](skills/source-artwork-capture-harness/SKILL.md) helps produce. Copy `fidelity-battery-template.json` from the skill folder, attach contact sheets/comparisons, and mark unsupported checks `not_testable` rather than guessing.
 
 ## Install
 
-Each skill is a self-contained folder containing a standard `SKILL.md` with a name and activation description. Install the folder—not just the Markdown file—into a skills directory supported by your agent. For example, in an environment that loads user skills from `~/.agents/skills/`:
+Each skill is a folder containing its activation metadata and complete procedure. Install the full family to use the router's cross-skill links; a focused leaf can also be installed alone when its input data is already prepared.
 
 ```sh
 mkdir -p ~/.agents/skills
-cp -R skills/source-artwork-2d-3d-reconstruction ~/.agents/skills/
-cp -R skills/source-artwork-fidelity-battery ~/.agents/skills/
+cp -R skills/source-artwork* ~/.agents/skills/
 ```
 
-For project-only use, copy it into the project-level skills directory supported by your host. Skill-discovery paths differ between agent products; this repository does not depend on any particular model provider, renderer, editor, or agent runtime.
+For project-only use, copy the skill folders into the project-level skills directory supported by your host. Discovery paths differ across agent products; the skills do not require a particular provider, renderer, editor, language, or runtime.
 
 ## License
 

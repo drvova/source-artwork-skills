@@ -1,67 +1,75 @@
 ---
 name: source-artwork-2d-3d-reconstruction
-description: Reverse-engineer existing artwork and animation, reproduce its 2D appearance and behavior faithfully, and build a source-faithful 3D version when requested.
+description: Route end-to-end source-artwork work across inspection, geometry recovery, 2D or 3D authoring, matched capture, and independent fidelity review. Use focused skills directly for a single stage.
 ---
 
-# Source Artwork: Faithful 2D and 3D Reconstruction
+# Source Artwork Reconstruction Router
 
 ## Purpose
 
-Reconstruct a real logo, mascot, sprite, or character from inspected source evidence. Support a 2D reproduction, a 3D reconstruction, or both. Treat source geometry and observed behavior as the authority; do not replace them with a merely similar design.
-
-## Portability Contract
-
-This workflow is independent of model provider, agent host, operating system, authoring application, renderer, and framework. Use equivalent tools exposed by the project or host; no particular language, browser, framework, editor, or 3D engine is required. Keep tool-specific commands in project scripts. If a capability is unavailable, use supplied assets or record the evidence limit rather than inventing results.
+Choose the requested output tracks, assemble only the specialist skills needed, and keep their handoffs explicit. This skill routes work; it does not duplicate the procedures owned by its leaves.
 
 ## Activate When
 
-- A user wants an existing website or product mascot recreated closely.
-- The task includes both the original 2D animation and a 3D version.
-- A screenshot looks simple but the real site may use hidden SVG, sprite, canvas, video, or 3D assets.
-- A current reconstruction differs in silhouette, animation, proportions, color, or attachment.
+- The request spans multiple source-artwork stages or both 2D and 3D.
+- The correct specialist is unclear.
+- A source-faithful result needs a complete inspection-to-validation workflow.
 
-## Fidelity Contract
+For one clearly scoped stage, use its focused skill directly.
 
-Choose the requested output tracks: `2D`, `3D`, or `both`.
+## Route
 
-- **2D source available:** Preserve and reuse the actual vector paths, pixel cells, sprite frames, or decoded source data. Match its viewBox/canvas, dimensions, palette, frame timing, registration, interaction, crop, and responsive behavior. Do not substitute a redrawn approximation when the source is accessible.
-- **Original 3D source available:** Recover and reuse the actual model, mesh, materials, camera, rig, animation curves, and scene settings where possible. Compare the rendered result under matching conditions.
-- **Only 2D source available for a 3D request:** Match the observable 2D silhouette, palette, and motion. Depth, hidden surfaces, thickness, and unseen anatomy cannot be recovered exactly from a flat image; infer only what is needed, label those choices, and do not claim the hidden 3D is 1:1.
-- **Only a 2D still exists:** Preserve the exact still and identify any authored 2D motion as an adaptation with inferred poses and timing; do not present it as recovered source animation.
-- **Exact pixels requested:** Use same-size captures and pixel/alpha comparison. Separate genuine geometry differences from browser, color-management, and renderer differences. State any unavoidable mismatch rather than calling a visual approximation pixel-identical.
+| Task | Specialist |
+|---|---|
+| Find the real source, inspect behavior, record evidence | [Source Artwork Inspection](../source-artwork-inspection/SKILL.md) |
+| Preserve or inspect SVG paths and pixel-cell geometry | [SVG and Pixel-Cell Geometry](../source-artwork-svg-cells/SKILL.md) |
+| Decode or validate sprite sheets and packed frame data | [Sprite Frame Data](../source-artwork-sprite-frames/SKILL.md) |
+| Author 2D motion and playback from prepared source data | [2D Animation](../source-artwork-2d-animation/SKILL.md) |
+| Build a source-derived 3D model and motion | [3D Animation](../source-artwork-3d-animation/SKILL.md) |
+| Produce matched captures and renderer control images | [Capture Harness](../source-artwork-capture-harness/SKILL.md) |
+| Score a completed result independently | [Fidelity Battery](../source-artwork-fidelity-battery/SKILL.md) |
 
-## Required Workflow
+## Common Routes
 
-1. **Capture the reference states.** Inspect the real page or source asset, not only a supplied still. Record viewport, device scale, background, crop, and dimensions. Capture idle, hover, focus, pointer, scroll, responsive, and reduced-motion states that affect the artwork.
-2. **Find the source assets and runtime.** Inspect DOM, network resources, repository files, scripts, styles, source maps, model files, and metadata. Determine whether the visible result is SVG, raster frames, a packed cell grid, canvas, video, or 3D. Trace the playback loop, frame rate, event triggers, and stop behavior.
-3. **Build an evidence map.** Record verified facts separately from inferences: original asset and source location; coordinates and palette; frame or model data; interaction and timing; rendering environment; unresolved details. A compiled frame format does not identify its authoring application. Never invent a tool, source model, or unseen 3D detail.
-4. **Preserve and validate source data.** Keep an unmodified copy and provenance. Use a standards-compliant parser for general SVG/model formats. A narrow parser is acceptable only when the source grammar is verified and the parser rejects unsupported forms. For custom packed frames, inspect the decoder first, document dimensions and field encoding, validate bounds, and round-trip a sample before editing.
-5. **Reproduce the 2D track.** Retain exact path order, fills, transforms, pixel grid, frame registration, and frame count. If only a rendered reference is recoverable, recreate at its native coordinates and palette, then compare overlays and silhouettes; do not imply this is the original source file. Preserve interaction timing and accessible pointer, keyboard-focus, and reduced-motion behavior.
-6. **Build the 3D track.** Prefer recovered source meshes and rigs. If none exist, derive the visible form from the 2D geometry: extrude layered vectors or cells for flat art, or construct a mesh when curved volume is evidenced. Keep the front silhouette and color boundaries faithful. Place joints at actual attachment points; overlap or deform roots to prevent gaps. Explicitly list inferred depth, back surfaces, and rig choices.
-7. **Match motion across tracks.** Reuse observed frame timing, key poses, loop length, direction, and interaction semantics. For 2D, render or select the correct source frame. For 3D, animate the source-faithful geometry with corresponding poses and contact points. Add secondary motion only when observed or clearly marked as an adaptation.
-8. **Validate by comparison.** Render both versions at matched size, view, background, and time. Use image overlays, difference images, silhouette masks, bounding boxes, palette checks, and frame contact sheets as appropriate. Inspect the first/last loop frames, every key pose, maximum articulation, clipping, occlusion, z-fighting, and joint attachment. If an original 3D model exists, compare its geometry and render rather than relying on appearance alone.
-9. **Deliver reproducibly.** Keep original assets, extraction/decoding code, source-derived model, animation code, generated media, and exact regeneration commands. For documentation surfaces, provide a supported animation format, a static reduced-motion fallback, and useful alt text. Verify the rendered target page or README.
+| Goal | Ordered handoff |
+|---|---|
+| Reproduce existing 2D animation | Inspection → SVG/cells or sprite frames → 2D animation → capture → fidelity battery |
+| Animate a still in 2D | Inspection → SVG/cells → 2D animation → capture → fidelity battery |
+| Derive 3D from 2D art | Inspection → SVG/cells or sprite frames → 3D animation → capture → fidelity battery |
+| Audit an existing reconstruction | Capture, if matched evidence is missing → fidelity battery |
 
-## Tool Selection
+Skip any stage whose verified artifact already exists. Do not re-run work merely to follow the table.
 
-Use tools and libraries already supported by the project; inspect their actual APIs and versions before implementation. Browser inspection, SVG/model parsers, pixel editors, 2D renderers, 3D frameworks, encoders, and comparison tools are interchangeable choices, not required dependencies. Do not assume network, browser, shell, or filesystem access; use available evidence and state any resulting limitation. Keep this workflow independent of provider and host.
+## Claim Mode
 
-## Deliverables
+Declare one mode before describing fidelity. The Fidelity Battery owns measurements and thresholds.
 
-- Reference-state captures and a short evidence-versus-inference note.
-- Preserved source assets or a reproducible extraction/decoding path.
-- The requested 2D animation, 3D reconstruction, or both.
-- Validation images or frame comparisons at matched conditions.
-- Regeneration instructions and reduced-motion/accessibility assets where applicable.
+| Mode | Permitted claim |
+|---|---|
+| `source-frame-exact` | Original geometry or frames are compared at corresponding poses and timing. |
+| `source-observed` | Output is compared against behavior captured from the rendered source. |
+| `static-adaptation` | Still appearance is source-based; authored motion is an adaptation. |
+| `2d-derived-3d` | Visible 3D appearance is compared to 2D evidence; hidden volume is inferred. |
 
-For a separate quantitative pass/fail review, pair this workflow with the standalone Source Artwork Fidelity Battery. This skill remains usable without it.
+Never present authored motion, inferred geometry, or unobserved details as recovered source data.
 
-## Acceptance Checklist
+## Handoff Contract
 
-- [ ] The requested 2D/3D tracks are complete; no requested mode was silently substituted.
-- [ ] Accessible 2D source geometry and animation data remain source-faithful.
-- [ ] 3D claims distinguish recovered model data from inferred volume.
-- [ ] Silhouette, palette, pose, timing, and interaction are checked against actual references.
-- [ ] Moving geometry stays connected through its full articulation.
-- [ ] Loop boundaries, reduced motion, and target rendering are verified.
-- [ ] Rebuilding from checked-in sources reproduces the delivered results.
+- **Evidence record:** source location, provenance, capture conditions, confirmed facts, inferences, and unknowns.
+- **Preserved source:** unmodified input plus enough provenance to identify it.
+- **Prepared data:** validated geometry/cells or decoded frames, with palette, registration, and timing where applicable.
+- **Comparison set:** matched source/output captures and any unchanged-source control render.
+- **Proof packet:** completed Fidelity Battery record with evidence references and a scoped verdict.
+
+Pass artifacts forward; do not copy another skill's procedure into this router. If a required stage or capability is unavailable, record the evidence gap and let the battery mark affected checks `not_testable`.
+
+## Portability
+
+The skill family is independent of model provider, agent host, operating system, editor, renderer, language, and framework. Use project-supported tools, inspect their current APIs, and keep tool-specific commands in project scripts. A missing browser, asset, or capture capability is an evidence limit—not permission to invent results.
+
+## Completion
+
+- Every requested output track has an explicit owner and deliverable.
+- Source facts, authored adaptations, and inferred details remain distinct.
+- Reproducible assets and relevant fallback media are handed off.
+- Validation claims are scoped to the available evidence.
