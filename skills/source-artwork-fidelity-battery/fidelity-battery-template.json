@@ -1,0 +1,88 @@
+{
+  "format_version": 1,
+  "mode": null,
+  "motion_basis": null,
+  "reference": {
+    "uri_or_path": "",
+    "sha256": "",
+    "asset_type": "",
+    "capture": {
+      "width_px": null,
+      "height_px": null,
+      "device_scale": null,
+      "background": "",
+      "state": "",
+      "time_ms": null
+    }
+  },
+  "claims": {
+    "recovered": [],
+    "adapted_or_inferred": [],
+    "not_testable": []
+  },
+  "rendering": {
+    "tool_and_version": "",
+    "control_render_available": false,
+    "control_render_evidence": ""
+  },
+  "tolerances": {
+    "silhouette_iou_min": 0.98,
+    "bbox_edge_drift_ratio_max": 0.01,
+    "unexpected_palette_pixels_max": 0,
+    "observed_loop_period_error_ratio_max": 0.05,
+    "loop_seam_landmark_displacement_ratio_max": 0.01,
+    "unintended_attachment_gap_px_max": 1,
+    "overrides_and_reasons": []
+  },
+  "measurements": {
+    "silhouette_iou": {
+      "value": null,
+      "status": "not_testable",
+      "evidence": ""
+    },
+    "bbox_edge_drift_ratio": {
+      "value": null,
+      "status": "not_testable",
+      "evidence": ""
+    },
+    "unexpected_palette_pixels": {
+      "value": null,
+      "status": "not_testable",
+      "evidence": ""
+    },
+    "loop_period_error_ratio": {
+      "value": null,
+      "status": "not_testable",
+      "evidence": ""
+    },
+    "loop_seam_landmark_displacement_ratio": {
+      "value": null,
+      "status": "not_testable",
+      "evidence": ""
+    },
+    "unintended_attachment_gap_px": {
+      "value": null,
+      "status": "not_testable",
+      "evidence": ""
+    },
+    "renderer_error": {
+      "per_metric": [],
+      "status": "not_testable",
+      "evidence": ""
+    },
+    "source_frame_count_and_timing_match": {
+      "value": null,
+      "status": "not_testable",
+      "evidence": ""
+    }
+  },
+  "evidence": {
+    "source_contact_sheet": "",
+    "output_contact_sheet": "",
+    "overlay": "",
+    "difference_image": ""
+  },
+  "verdict": "not_testable",
+  "verdict_scope": "",
+  "limitations": []
+}

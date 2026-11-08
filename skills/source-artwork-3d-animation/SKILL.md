@@ -44,6 +44,8 @@ Use the tools already supported by the project. Inspect current documentation be
 - Final animated media and a still fallback when the destination needs one.
 - Regeneration instructions and verified examples at key frames.
 
+For a separate quantitative pass/fail review, pair this workflow with the standalone Source Artwork Fidelity Battery. This skill remains usable without it.
+
 ## Acceptance Checklist
 
 - [ ] Dimensions, fills, layers, and distinctive silhouette trace back to inspected source evidence.

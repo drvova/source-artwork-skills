@@ -54,6 +54,8 @@ Use tools and libraries already supported by the project; inspect their actual A
 - Validation images or frame comparisons at matched conditions.
 - Regeneration instructions and reduced-motion/accessibility assets where applicable.
 
+For a separate quantitative pass/fail review, pair this workflow with the standalone Source Artwork Fidelity Battery. This skill remains usable without it.
+
 ## Acceptance Checklist
 
 - [ ] The requested 2D/3D tracks are complete; no requested mode was silently substituted.

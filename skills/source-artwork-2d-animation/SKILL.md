@@ -52,6 +52,8 @@ Use the tools and libraries already supported by the project, and inspect their 
 - Target-ready animation and a still fallback where needed.
 - Reproducible generation instructions and inspected frame/loop evidence.
 
+For a separate quantitative pass/fail review, pair this workflow with the standalone Source Artwork Fidelity Battery. This skill remains usable without it.
+
 ## Acceptance Checklist
 
 - [ ] Source animation is preserved, or newly authored motion is identified as an adaptation.
