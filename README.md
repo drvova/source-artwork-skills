@@ -10,12 +10,23 @@ Portable, provider-agnostic agent skills for inspecting real artwork and recreat
 
 ## Worked example: the axolotl, from source art to 3D motion
 
-<picture>
-  <source srcset="examples/axolotl-3d-demo-still.png" media="(prefers-reduced-motion: reduce)">
-  <img src="examples/axolotl-3d-demo.gif" alt="A source-derived 3D pixel-art axolotl swimming in place, with its gills and limbs moving.">
-</picture>
+<table>
+  <tr>
+    <th>2D source mark (SVG)</th>
+    <th>3D reconstruction (animated)</th>
+  </tr>
+  <tr>
+    <td><img src="examples/axolotl-2d-source.svg" alt="The original flat pixel-art axolotl logo in orange, cream, and white."></td>
+    <td>
+      <picture>
+        <source srcset="examples/axolotl-3d-demo-still.png" media="(prefers-reduced-motion: reduce)">
+        <img src="examples/axolotl-3d-demo.gif" alt="A 3D pixel-art axolotl swimming in place, with gills and limbs moving.">
+      </picture>
+    </td>
+  </tr>
+</table>
 
-This is a real output from applying the unified workflow—not a gallery of links:
+The left is the source's flat 2D artwork; the right is the animated 3D reconstruction built from it. The website's own 2D animation was a separate frame sequence, described below.
 
 1. **Inspect the input.** The mark was a 312 × 266 SVG with seven colored paths made from 253 rectangular pixel-art cells. The website's animation was separate from the static logo.
 2. **Trace the original motion.** The inspected site bundle contained 24 frames on a 39 × 28 cell grid, packed as base64 and decoded to SVG at 12 fps. Hover and keyboard focus drove playback. The bundle exposed the playback format, but not the artist's drawing tool.
